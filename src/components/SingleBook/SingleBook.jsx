@@ -1,3 +1,5 @@
+import {FcRating} from "react-icons/fc";
+
 const SingleBook = ({book}) => {
   const {image, tags, book_name, author, category, rating} = book;
 
@@ -18,12 +20,14 @@ const SingleBook = ({book}) => {
       </div>
       <div className="card-body">
         <h2 className="text-2xl font-semibold">{book_name}</h2>
-        <p>By: {author}</p>
+        <p>By : {author}</p>
         <hr />
-        <div>
-          <h1>{category}</h1>
+        <div className="flex justify-between">
+          <h1 className="font-semibold">{category}</h1>
           <div>
-            <p>{rating}</p>
+            <p className=" flex gap-2 items-center">
+              {rating} <FcRating />
+            </p>
           </div>
         </div>
       </div>
