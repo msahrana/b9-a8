@@ -17,7 +17,6 @@ const Pages = () => {
       };
       fakeData = [...fakeData, its];
     });
-
     setBook(fakeData);
   }, [readStored]);
   const data = [...book];
