@@ -25,25 +25,33 @@ const ListedBookCard = ({listedBook}) => {
       <div className="space-y-2">
         <h2 className="card-title">{book_name}</h2>
         <p>By : {author}</p>
-        <div className="flex space-x-5 items-center">
-          <h3>Tags : </h3>
-          <p className="text-[#23be0a] bg-[#23be0a0d] rounded-full px-4 py-1 text-base font-semibold">
-            {tags?.[0]}
-          </p>
-          <p className="text-[#23be0a] bg-[#23be0a0d] rounded-full px-4 py-1 text-base font-semibold">
-            {tags?.[1]}
-          </p>
-          <CiLocationOn />
-          <p>Published : {year_of_publishing}</p>
+        <div className="flex flex-col lg:flex-row lg:space-x-3 items-center">
+          <div className="flex gap-1 lg:gap-3 items-center">
+            <h3>Tags : </h3>
+            <p className="text-[#23be0a] lg:bg-[#23be0a0d] rounded-full lg:px-4 lg:py-1 text-base font-semibold">
+              {tags?.[0]}
+            </p>
+            <p className="text-[#23be0a] lg:bg-[#23be0a0d] rounded-full lg:px-4 lg:py-1 text-base font-semibold">
+              {tags?.[1]}
+            </p>
+          </div>
+          <div className="flex gap-1 lg:gap-3 items-center">
+            <CiLocationOn />
+            <p>Published : {year_of_publishing}</p>
+          </div>
         </div>
-        <div className="flex space-x-5 items-center">
-          <FaUserGroup />
-          <p>Publisher : {publisher}</p>
-          <LiaPagerSolid />
-          <p>Pages: {total_pages}</p>
+        <div className="flex flex-col lg:flex-row space-x-5 items-center">
+          <div className="flex gap-1 lg:gap-3 items-center">
+            <FaUserGroup />
+            <p>Publisher : {publisher}</p>
+          </div>
+          <div className="flex gap-1 lg:gap-3 items-center">
+            <LiaPagerSolid />
+            <p>Pages: {total_pages}</p>
+          </div>
         </div>
         <div className="divider"></div>
-        <div className="flex space-x-5 items-center">
+        <div className="flex flex-col lg:flex-row gap-4 items-center">
           <div className="bg-[#328eff26] px-2 py-1 rounded-full">
             <p className="text-[#328EFF]">Category: {category}</p>
           </div>

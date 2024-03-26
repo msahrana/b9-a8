@@ -11,6 +11,10 @@ const BookDetails = () => {
     saveToLocalStorage(bookDetails);
   };
 
+  const handleWishlist = () => {
+    saveToLocalStorage(bookDetails);
+  };
+
   useEffect(() => {
     const findBook = books.find((item) => item.id == id);
     setBookDetails(findBook);
@@ -28,10 +32,6 @@ const BookDetails = () => {
     year_of_publishing,
     rating,
   } = bookDetails || "";
-
-  const handleWishlist = () => {
-    console.log("click Wishlist");
-  };
 
   return (
     <div className="h-[500px] my-16 w-full">
