@@ -55,6 +55,26 @@ const Navbar = () => {
             >
               Pages to Read
             </NavLink>
+            <NavLink
+              className={({isActive}) =>
+                isActive
+                  ? "text-[#23be0a] border border-[#23be0a] px-2 py-1 font-semibold rounded-lg"
+                  : "font-semibold"
+              }
+              to="/aboutUs"
+            >
+              About Us
+            </NavLink>
+            <NavLink
+              className={({isActive}) =>
+                isActive
+                  ? "text-[#23be0a] border border-[#23be0a] px-2 py-1 font-semibold rounded-lg"
+                  : "font-semibold"
+              }
+              to="/contact"
+            >
+              Contact
+            </NavLink>
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost lg:text-4xl font-bold">
@@ -92,6 +112,26 @@ const Navbar = () => {
             to="/pages"
           >
             Pages to Read
+          </NavLink>
+          <NavLink
+            className={({isActive}) =>
+              isActive
+                ? "text-[#23be0a] text-lg border border-[#23be0a] px-2 py-1 font-bold rounded-lg"
+                : "font-bold text-lg"
+            }
+            to="/aboutUs"
+          >
+            About Us
+          </NavLink>
+          <NavLink
+            className={({isActive}) =>
+              isActive
+                ? "text-[#23be0a] text-lg border border-[#23be0a] px-2 py-1 font-bold rounded-lg"
+                : "font-bold text-lg"
+            }
+            to="/contact"
+          >
+            Contact
           </NavLink>
         </ul>
       </div>
