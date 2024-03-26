@@ -136,7 +136,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn mr-4 bg-[#23be0a] lg:text-lg text-white">Sign In</a>
+        <a className="btn mr-4 bg-[#23be0a] lg:text-lg text-white hidden lg:flex">
+          Sign In
+        </a>
         <a className="btn bg-[#59c6d2] lg:text-lg text-white">Sign Up</a>
       </div>
     </div>
