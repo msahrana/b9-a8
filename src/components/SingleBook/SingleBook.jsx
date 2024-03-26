@@ -1,19 +1,12 @@
-import {useState} from "react";
 import {FcRating} from "react-icons/fc";
 import {Link} from "react-router-dom";
 
 const SingleBook = ({book}) => {
   const {image, tags, book_name, author, category, rating, id} = book;
-  const [myBook, setMyBook] = useState([]);
-
-  const handleShow = (book) => {
-    setMyBook(...myBook, book);
-    console.log(book);
-  };
 
   return (
-    <Link to={`/book/${id}`}>
-      <div onClick={handleShow} className="card w-96 bg-base-100 shadow-xl">
+    <Link to={`/books/${id}`}>
+      <div className="card w-96 bg-base-100 shadow-xl">
         <div className="bg-gray-200 p-2 rounded-lg m-6">
           <figure>
             <img src={image} alt="Shoes" className="py-5" />
