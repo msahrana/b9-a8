@@ -99,7 +99,7 @@ const Navbar = () => {
                 ? "text-[#23be0a] text-lg border border-[#23be0a] px-2 py-1 font-bold rounded-lg"
                 : "font-bold text-lg"
             }
-            to="/books"
+            to="/books/read"
           >
             Listed Books
           </NavLink>

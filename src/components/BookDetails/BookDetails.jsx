@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useLoaderData, useParams} from "react-router-dom";
-import {saveToLocalStorage} from "../../utility/localStorage";
+import {saveLocalStorage, saveToLocalStorage} from "../../utility/localStorage";
 
 const BookDetails = () => {
   const [bookDetails, setBookDetails] = useState({});
@@ -12,7 +12,7 @@ const BookDetails = () => {
   };
 
   const handleWishlist = () => {
-    saveToLocalStorage(bookDetails);
+    saveLocalStorage(bookDetails);
   };
 
   useEffect(() => {
