@@ -1,17 +1,66 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Link, Outlet} from "react-router-dom";
-import SortBy from "../../components/SortBy/SortBy";
 
 const ListedBooks = () => {
   const [tabIndex, setTabIndex] = useState(0);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("read");
+    if (storedData) {
+      setData(JSON.parse(storedData));
+    }
+  }, []);
+
+  const sortByRating = () => {
+    const sortedData = [...data].sort((low, high) => low.rating - high.rating);
+    setData(sortedData);
+  };
+
+  const sortByTotalPages = () => {
+    const sortedData = [...data].sort(
+      (low, high) => low.total_pages - high.total_pages
+    );
+    setData(sortedData);
+  };
+
+  const sortByPublishYear = () => {
+    const sortedData = [...data].sort(
+      (low, high) => low.year_of_publishing - high.year_of_publishing
+    );
+    setData(sortedData);
+  };
 
   return (
     <div>
       <div className="container mx-auto w-2/3 mb-6">
-        <SortBy></SortBy>
+        {/* sort by */}
+        <div className="dropdown">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn bg-green-600 text-white text-xl mt-4"
+          >
+            Sort By
+          </div>
+          <ul
+            tabIndex={0}
+            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li onClick={sortByRating}>
+              <a>Rating</a>
+            </li>
+            <li onClick={sortByTotalPages}>
+              <a>Page Number</a>
+            </li>
+            <li onClick={sortByPublishYear}>
+              <a>Published Year</a>
+            </li>
+          </ul>
+        </div>
       </div>
       {/* tabs */}
-      <div className="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-start flex-nowrap dark:bg-gray-100 dark:text-gray-800 w-2/3 mx-auto">
+      <div className="flex items-center overflow-x-auto overflow-y-hidden sm:justify-start flex-nowrap dark:bg-gray-100 dark:text-gray-800 w-2/3 mx-auto">
         <Link
           to={`read`}
           onClick={() => setTabIndex(0)}

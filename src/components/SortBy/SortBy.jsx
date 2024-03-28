@@ -11,18 +11,20 @@ const SortBy = () => {
   }, []);
 
   const sortByRating = () => {
-    const sortedData = [...data].sort((a, b) => a.rating - b.rating);
+    const sortedData = [...data].sort((low, high) => low.rating - high.rating);
     setData(sortedData);
   };
 
   const sortByTotalPages = () => {
-    const sortedData = [...data].sort((a, b) => a.total_pages - b.total_pages);
+    const sortedData = [...data].sort(
+      (low, high) => low.total_pages - high.total_pages
+    );
     setData(sortedData);
   };
 
   const sortByPublishYear = () => {
     const sortedData = [...data].sort(
-      (a, b) => a.year_of_publishing - b.year_of_publishing
+      (low, high) => low.year_of_publishing - high.year_of_publishing
     );
     setData(sortedData);
   };
@@ -39,7 +41,7 @@ const SortBy = () => {
         </button>
         <button
           onClick={sortByTotalPages}
-          className="bg-green-500 rounded-full px-3 py-1 text-white"
+          className="bg-green-500 rounded-full px-3 py-1 text-white mx-4"
         >
           Sort by Total Pages
         </button>
@@ -61,7 +63,7 @@ const SortBy = () => {
         </button>
         <button
           onClick={sortByTotalPages}
-          className="bg-green-500 rounded-full px-3 py-1 text-white"
+          className="bg-green-500 rounded-full px-3 py-1 text-white mx-4"
         >
           Sort by Total Pages
         </button>
@@ -73,16 +75,16 @@ const SortBy = () => {
         </button>
       </div>
 
-      <ul>
+      <div>
         {data.map((item, index) => (
-          <li key={index}>
+          <div key={index}>
             <div>Rating: {item.rating}</div>
-            <div>Total Pages: {item.total_page}</div>
-            <div>Publish Year: {item.publish_year}</div>
+            <div>Total Pages: {item.total_pages}</div>
+            <div>Publish Year: {item.year_of_publishing}</div>
             <img src={item.image} alt="Book cover" />
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
