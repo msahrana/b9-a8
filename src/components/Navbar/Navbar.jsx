@@ -41,7 +41,7 @@ const Navbar = () => {
                   ? "text-[#23be0a] border border-[#23be0a] px-2 py-1 font-semibold rounded-lg"
                   : "font-semibold"
               }
-              to="/books"
+              to="/books/reed"
             >
               Listed Books
             </NavLink>

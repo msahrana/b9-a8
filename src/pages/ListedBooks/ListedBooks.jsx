@@ -1,38 +1,71 @@
 import {useEffect, useState} from "react";
-import {Link, Outlet} from "react-router-dom";
+import Read from "../../components/Read/Read";
+import Wishlist from "../../components/Wishlist/Wishlist";
 
 const ListedBooks = () => {
   const [tabIndex, setTabIndex] = useState(0);
-  const [data, setData] = useState([]);
+  const [readBooks, setReadBooks] = useState([]);
+  const [wishBooks, setWishBooks] = useState([]);
 
   useEffect(() => {
-    const storedData = localStorage.getItem("read");
-    if (storedData) {
-      setData(JSON.parse(storedData));
+    const storedReadBooks = localStorage.getItem("read");
+    if (storedReadBooks) {
+      setReadBooks(JSON.parse(storedReadBooks));
+    }
+  }, []);
+
+  useEffect(() => {
+    const storedReadBooks = localStorage.getItem("wishlist");
+    if (storedReadBooks) {
+      setWishBooks(JSON.parse(storedReadBooks));
     }
   }, []);
 
   const sortByRating = () => {
-    const sortedData = [...data].sort((low, high) => low.rating - high.rating);
-    setData(sortedData);
+    if (tabIndex == 0) {
+      const sortedReadBooks = [...readBooks].sort(
+        (low, high) => high.rating - low.rating
+      );
+      setReadBooks(sortedReadBooks);
+    } else if (tabIndex == 1) {
+      const sortedReadBooks = [...wishBooks].sort(
+        (low, high) => high.rating - low.rating
+      );
+      setWishBooks(sortedReadBooks);
+    }
   };
 
   const sortByTotalPages = () => {
-    const sortedData = [...data].sort(
-      (low, high) => low.total_pages - high.total_pages
-    );
-    setData(sortedData);
+    if (tabIndex == 0) {
+      const sortedReadBooks = [...readBooks].sort(
+        (low, high) => high.total_pages - low.total_pages
+      );
+      setReadBooks(sortedReadBooks);
+    } else if (tabIndex == 1) {
+      const sortedReadBooks = [...wishBooks].sort(
+        (low, high) => high.total_pages - low.total_pages
+      );
+      setWishBooks(sortedReadBooks);
+    }
   };
 
   const sortByPublishYear = () => {
-    const sortedData = [...data].sort(
-      (low, high) => low.year_of_publishing - high.year_of_publishing
-    );
-    setData(sortedData);
+    if (tabIndex == 0) {
+      const sortedReadBooks = [...readBooks].sort(
+        (low, high) => high.year_of_publishing - low.year_of_publishing
+      );
+      setReadBooks(sortedReadBooks);
+    } else if (tabIndex == 1) {
+      const sortedReadBooks = [...wishBooks].sort(
+        (low, high) => high.year_of_publishing - low.year_of_publishing
+      );
+      setWishBooks(sortedReadBooks);
+    }
   };
 
   return (
     <div>
+      /read
       <div className="container mx-auto w-2/3 mb-6">
         {/* sort by */}
         <div className="dropdown">
@@ -61,8 +94,8 @@ const ListedBooks = () => {
       </div>
       {/* tabs */}
       <div className="flex items-center overflow-x-auto overflow-y-hidden sm:justify-start flex-nowrap dark:bg-gray-100 dark:text-gray-800 w-2/3 mx-auto">
-        <Link
-          to={`read`}
+        <a
+          href="#"
           onClick={() => setTabIndex(0)}
           className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${
             tabIndex === 0 ? "border border-b-0" : "border-b"
@@ -81,9 +114,9 @@ const ListedBooks = () => {
             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
           </svg>
           <span>Read</span>
-        </Link>
-        <Link
-          to={`wishlist`}
+        </a>
+        <a
+          href="#"
           onClick={() => setTabIndex(1)}
           className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${
             tabIndex === 1 ? "border border-b-0" : "border-b"
@@ -103,9 +136,10 @@ const ListedBooks = () => {
             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
           </svg>
           <span>Wishlist</span>
-        </Link>
+        </a>
       </div>
-      <Outlet></Outlet>
+      {tabIndex == 0 && <Read books={readBooks} />}
+      {tabIndex == 1 && <Wishlist books={wishBooks} />}
     </div>
   );
 };
