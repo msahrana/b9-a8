@@ -15,9 +15,9 @@ const ListedContext = ({children}) => {
   }, []);
 
   useEffect(() => {
-    const storedReadBooks = localStorage.getItem("wishlist");
-    if (storedReadBooks) {
-      setWishBooks(JSON.parse(storedReadBooks));
+    const storedWishBooks = localStorage.getItem("wishlist");
+    if (storedWishBooks) {
+      setWishBooks(JSON.parse(storedWishBooks));
     }
   }, []);
 
@@ -28,10 +28,10 @@ const ListedContext = ({children}) => {
       );
       setReadBooks(sortedReadBooks);
     } else if (tabIndex == 1) {
-      const sortedReadBooks = [...wishBooks].sort(
+      const storedWishBooks = [...wishBooks].sort(
         (low, high) => high.rating - low.rating
       );
-      setWishBooks(sortedReadBooks);
+      setWishBooks(storedWishBooks);
     }
   };
 
@@ -42,10 +42,10 @@ const ListedContext = ({children}) => {
       );
       setReadBooks(sortedReadBooks);
     } else if (tabIndex == 1) {
-      const sortedReadBooks = [...wishBooks].sort(
+      const storedWishBooks = [...wishBooks].sort(
         (low, high) => high.total_pages - low.total_pages
       );
-      setWishBooks(sortedReadBooks);
+      setWishBooks(storedWishBooks);
     }
   };
 
@@ -56,10 +56,10 @@ const ListedContext = ({children}) => {
       );
       setReadBooks(sortedReadBooks);
     } else if (tabIndex == 1) {
-      const sortedReadBooks = [...wishBooks].sort(
+      const storedWishBooks = [...wishBooks].sort(
         (low, high) => high.year_of_publishing - low.year_of_publishing
       );
-      setWishBooks(sortedReadBooks);
+      setWishBooks(storedWishBooks);
     }
   };
 
