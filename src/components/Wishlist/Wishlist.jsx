@@ -1,9 +1,13 @@
+import {useContext} from "react";
 import ListedBookCard from "../../pages/ListedBooks/ListedBookCard";
+import {ListedBookContext} from "../ListedContext/ListedContext";
 
-const Wishlist = ({books}) => {
+const Wishlist = () => {
+  const {wishBooks} = useContext(ListedBookContext);
+
   return (
     <div className="mt-20">
-      {books.map((listedBook) => (
+      {wishBooks.map((listedBook) => (
         <ListedBookCard
           key={listedBook.id}
           listedBook={listedBook}

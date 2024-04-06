@@ -1,67 +1,15 @@
-import {useEffect, useState} from "react";
-import Read from "../../components/Read/Read";
-import Wishlist from "../../components/Wishlist/Wishlist";
+import {useContext} from "react";
+import {Link, Outlet} from "react-router-dom";
+import {ListedBookContext} from "../../components/ListedContext/ListedContext";
 
 const ListedBooks = () => {
-  const [tabIndex, setTabIndex] = useState(0);
-  const [readBooks, setReadBooks] = useState([]);
-  const [wishBooks, setWishBooks] = useState([]);
-
-  useEffect(() => {
-    const storedReadBooks = localStorage.getItem("read");
-    if (storedReadBooks) {
-      setReadBooks(JSON.parse(storedReadBooks));
-    }
-  }, []);
-
-  useEffect(() => {
-    const storedReadBooks = localStorage.getItem("wishlist");
-    if (storedReadBooks) {
-      setWishBooks(JSON.parse(storedReadBooks));
-    }
-  }, []);
-
-  const sortByRating = () => {
-    if (tabIndex == 0) {
-      const sortedReadBooks = [...readBooks].sort(
-        (low, high) => high.rating - low.rating
-      );
-      setReadBooks(sortedReadBooks);
-    } else if (tabIndex == 1) {
-      const sortedReadBooks = [...wishBooks].sort(
-        (low, high) => high.rating - low.rating
-      );
-      setWishBooks(sortedReadBooks);
-    }
-  };
-
-  const sortByTotalPages = () => {
-    if (tabIndex == 0) {
-      const sortedReadBooks = [...readBooks].sort(
-        (low, high) => high.total_pages - low.total_pages
-      );
-      setReadBooks(sortedReadBooks);
-    } else if (tabIndex == 1) {
-      const sortedReadBooks = [...wishBooks].sort(
-        (low, high) => high.total_pages - low.total_pages
-      );
-      setWishBooks(sortedReadBooks);
-    }
-  };
-
-  const sortByPublishYear = () => {
-    if (tabIndex == 0) {
-      const sortedReadBooks = [...readBooks].sort(
-        (low, high) => high.year_of_publishing - low.year_of_publishing
-      );
-      setReadBooks(sortedReadBooks);
-    } else if (tabIndex == 1) {
-      const sortedReadBooks = [...wishBooks].sort(
-        (low, high) => high.year_of_publishing - low.year_of_publishing
-      );
-      setWishBooks(sortedReadBooks);
-    }
-  };
+  const {
+    tabIndex,
+    setTabIndex,
+    sortByRating,
+    sortByTotalPages,
+    sortByPublishYear,
+  } = useContext(ListedBookContext);
 
   return (
     <div>
@@ -94,8 +42,8 @@ const ListedBooks = () => {
       </div>
       {/* tabs */}
       <div className="flex items-center overflow-x-auto overflow-y-hidden sm:justify-start flex-nowrap dark:bg-gray-100 dark:text-gray-800 w-2/3 mx-auto">
-        <a
-          href="#"
+        <Link
+          to="read"
           onClick={() => setTabIndex(0)}
           className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${
             tabIndex === 0 ? "border border-b-0" : "border-b"
@@ -114,9 +62,9 @@ const ListedBooks = () => {
             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
           </svg>
           <span>Read</span>
-        </a>
-        <a
-          href="#"
+        </Link>
+        <Link
+          to="wishlist"
           onClick={() => setTabIndex(1)}
           className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${
             tabIndex === 1 ? "border border-b-0" : "border-b"
@@ -136,10 +84,9 @@ const ListedBooks = () => {
             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
           </svg>
           <span>Wishlist</span>
-        </a>
+        </Link>
       </div>
-      {tabIndex == 0 && <Read books={readBooks} />}
-      {tabIndex == 1 && <Wishlist books={wishBooks} />}
+      <Outlet></Outlet>
     </div>
   );
 };

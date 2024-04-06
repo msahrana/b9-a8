@@ -9,7 +9,7 @@ const Banner = () => {
             Books to freshen <br />
             up your bookshelf
           </h1>
-          <Link to="/books">
+          <Link to="/books/read">
             <button className="btn bg-[#23be0a] text-white font-semibold text-xl mt-16">
               View The List
             </button>
